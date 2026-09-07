@@ -34,11 +34,15 @@ Layout completo de dos columnas principales con barra lateral fija de 260px, gr�
 
 ### 2. Vista Tablet (768px - 992px)
 Los gráficos y las secciones inferiores de tablas/alertas se reorganizan verticalmente a una sola columna para maximizar la legibilidad de la información.
-![Vista Tablet](./assets/tablet.png)
+![Vista Tablet]
+<img width="1007" height="800" alt="Tablet" src="https://github.com/user-attachments/assets/ee8325e2-cf0d-486f-b80b-4e48668c5ab0" />
+
 
 ### 3. Vista Móvil (< 768px)
 La barra lateral pasa a posicionarse horizontalmente, ocultando las etiquetas de texto de la navegación para dar prioridad a los íconos. El encabezado ajusta el buscador al 100% del ancho y la tabla habilita desplazamiento horizontal.
-![Vista Móvil](./assets/movil.png)
+![Vista Móvil]
+<img width="478" height="820" alt="Movil" src="https://github.com/user-attachments/assets/ad9931de-89ee-4fd3-a154-c6df1d5ef128" />
+
 
 ---
 
