@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Flota - TransControl</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-layout">
+
+  <aside class="sidebar" role="navigation" aria-label="Navegación principal">
+    <div class="brand">
+      <i class="fa-solid fa-truck-fast"></i>
+      <h2>TransControl</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#" class="active"><i class="fa-solid fa-chart-line"></i> <span>Panel General</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-car"></i> <span>Vehículos</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-route"></i> <span>Rutas y Viajes</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-wrench"></i> <span>Mantenimiento</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gas-pump"></i> <span>Combustible</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Configuración</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <header class="header">
+    <div class="header-left">
+      <button id="toggle-sidebar" class="btn-toggle" aria-label="Colapsar menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="text" id="search-input" placeholder="Buscar vehículo, placa o conductor..." aria-label="Buscar en el sistema">
+      </div>
+    </div>
+
+    <div class="header-user">
+      <button class="btn-primary-sm"><i class="fa-solid fa-plus"></i> Nuevo Vehículo</button>
+      <div class="notifications" aria-label="Notificaciones">
+        <i class="fa-solid fa-bell"></i>
+        <span class="badge">3</span>
+      </div>
+      <div class="user-profile">
+        <img src="https://ui-avatars.com/api/?name=Admin+Transporte&background=2563eb&color=fff" alt="Foto de perfil del Administrador">
+        <div class="user-info">
+          <span class="name">Carlos Gómez</span>
+          <span class="role">Jefe de Operaciones</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content" role="main">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>Estado de la Flota</h1>
+        <p>Supervisión en tiempo real de vehículos y operaciones analíticas.</p>
+      </div>
+      <div class="quick-stats-badge">
+        <span>Eficiencia Operativa</span>
+        <strong>87.5%</strong>
+        <div class="progress-bar"><div class="progress-fill" style="width: 87.5%;"></div></div>
+      </div>
+    </div>
+
+    <section class="cards-grid">
+      <div class="card">
+        <div class="card-icon blue"><i class="fa-solid fa-truck"></i></div>
+        <div class="card-info">
+          <h3>Flota Total</h3>
+          <p class="card-value">48</p>
+          <span class="card-status positive"><i class="fa-solid fa-check"></i> 42 Operativos</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon green"><i class="fa-solid fa-road"></i></div>
+        <div class="card-info">
+          <h3>En Ruta</h3>
+          <p class="card-value">28</p>
+          <span class="card-status info">En camino a destino</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div class="card-info">
+          <h3>En Taller</h3>
+          <p class="card-value">6</p>
+          <span class="card-status warning">Mantenimiento preventivo</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon purple"><i class="fa-solid fa-gas-pump"></i></div>
+        <div class="card-info">
+          <h3>Gasto Combustible</h3>
+          <p class="card-value">$12.450</p>
+          <span class="card-status">Este mes</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Consumo de Combustible ($ / Mes)</h2>
+          <span class="chart-tag">Últimos 6 meses</span>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="chartCombustible"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Distribución de la Flota</h2>
+          <span class="chart-tag">Tiempo Real</span>
+        </div>
+        <div class="chart-wrapper chart-wrapper-donut">
+          <canvas id="chartEstados"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-details">
+      <div class="table-container">
+        <h2>Últimos Vehículos Monitoreados</h2>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Placa / ID</th>
+                <th>Modelo / Marca</th>
+                <th>Conductor</th>
+                <th>Estado</th>
+                <th>Combustible</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ABC-123</strong></td>
+                <td>Chevrolet NHX 2022</td>
+                <td>Juan Pérez</td>
+                <td><span class="status-pill green">En Ruta</span></td>
+                <td>
+                  <div class="fuel-level"><div class="fuel-bar" style="width: 85%;"></div> <span>85%</span></div>
+                </td>
+                <td><button class="btn-action" aria-label="Ver detalles de ABC-123"><i class="fa-solid fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td><strong>XYZ-789</strong></td>
+                <td>Kenworth T680 2021</td>
+                <td>María Rodríguez</td>
+                <td><span class="status-pill green">En Ruta</span></td>
+                <td>
+                  <div class="fuel-level"><div class="fuel-bar" style="width: 60%;"></div> <span>60%</span></div>
+                </td>
+                <td><button class="btn-action" aria-label="Ver detalles de XYZ-789"><i class="fa-solid fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td><strong>KMT-456</strong></td>
+                <td>Hino 500 2020</td>
+                <td>Luis Martínez</td>
+                <td><span class="status-pill orange">En Taller</span></td>
+                <td>
+                  <div class="fuel-level"><div class="fuel-bar low" style="width: 15%;"></div> <span>15%</span></div>
+                </td>
+                <td><button class="btn-action" aria-label="Ver detalles de KMT-456"><i class="fa-solid fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td><strong>MNO-321</strong></td>
+                <td>Foton Auman 2023</td>
+                <td>Andrés Silva</td>
+                <td><span class="status-pill blue">Disponible</span></td>
+                <td>
+                  <div class="fuel-level"><div class="fuel-bar" style="width: 100%;"></div> <span>100%</span></div>
+                </td>
+                <td><button class="btn-action" aria-label="Ver detalles de MNO-321"><i class="fa-solid fa-eye"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="alerts-container">
+        <h2>Alertas de Mantenimiento</h2>
+        <ul class="alerts-list">
+          <li class="alert-item high">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+              <strong>KMT-456: Cambio de Aceite</strong>
+              <p>Superó los 10.000 km programados.</p>
+            </div>
+          </li>
+          <li class="alert-item medium">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <strong>XYZ-789: Revisión de Frenos</strong>
+              <p>Programado para mañana 8:00 AM.</p>
+            </div>
+          </li>
+          <li class="alert-item low">
+            <i class="fa-solid fa-circle-info"></i>
+            <div>
+              <strong>ABC-123: Documentación</strong>
+              <p>Seguro SOAT vence en 15 días.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2026 TransControl - Sistema de Gestión de Transporte.</p>
+    <p>Estado del Servidor: <span class="status-online">● Operativo</span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
