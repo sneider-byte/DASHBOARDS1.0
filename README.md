@@ -1,6 +1,6 @@
 #  TransControl - Dashboard Administrativo de Gestión de Flota
 
-**TransControl** es un dashboard administrativo moderno, responsivo e interactivo diseñado para el monitoreo, control y analítica en tiempo real de vehículos, conductores, estado de rutas y consumo de combustible en empresas de transporte y logística.
+**TransControl** es un dashboard administrativo moderno, interactivo diseñado para el monitoreo, control y analítica en tiempo real de vehículos, conductores, estado de rutas y consumo de combustible en empresas de transporte y logística.
 
 ---
 
@@ -28,7 +28,9 @@ El sistema fue diseñado bajo principios de diseño líquido y adaptabilidad mul
 
 ### 1. Vista Escritorio (> 992px)
 Layout completo de dos columnas principales con barra lateral fija de 260px, gráficos comparativos de dos columnas y acceso rápido a datos del sistema.
-![Vista Escritorio](./assets/escritorio.png)
+![Vista Escritorio]
+<img width="1880" height="907" alt="Escritorio" src="https://github.com/user-attachments/assets/000555cc-faf4-4e74-8ffe-b8261b0c310c" />
+
 
 ### 2. Vista Tablet (768px - 992px)
 Los gráficos y las secciones inferiores de tablas/alertas se reorganizan verticalmente a una sola columna para maximizar la legibilidad de la información.
